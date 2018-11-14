@@ -21,7 +21,7 @@ class ServiceCentre(models.Model):
 class Repair(models.Model):
     '''Model representing repair in service centre in case difficult repair'''
 
-    tiket = models.CharField(max_length=8, help_text='Ticket in service centre')
+    ticket = models.CharField(max_length=8, help_text='Ticket in service centre')
     diagnostic_card = models.CharField(max_length=8, help_text='diagnostic card number')
     price = models.DecimalField(max_digits=9, decimal_places=2)
     sc = models.ForeignKey(ServiceCentre, on_delete=models.SET_NULL, null=True, blank=True)
@@ -94,7 +94,7 @@ class Tickets(models.Model):
     )
     location = models.CharField(
         max_length=1, choices=DEVICE_LOCATION, blank=True, default=COURT)
-    remark = models.CharField(max_length=8, help_text='Ticket in service centre')
+    remark = models.CharField(max_length=100, help_text='Device malfunction describe')
 
     def __str__(self):
         """ String for representing ticket"""

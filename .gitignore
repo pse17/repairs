@@ -1,4 +1,4 @@
 repairs/__pycache__/*
 reports/__pycache__/*
 reports/migrations/__pycache__/*
-
+reports/tests/__pycache__/*
