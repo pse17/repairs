@@ -20,11 +20,22 @@ class ServiceCentre(models.Model):
 
 class Repair(models.Model):
     '''Model representing repair in service centre in case difficult repair'''
-
+    
+    sc = models.ForeignKey(ServiceCentre, on_delete=models.SET_NULL, null=True, blank=True)
     ticket = models.CharField(max_length=8, help_text='Ticket in service centre')
     diagnostic_card = models.CharField(max_length=8, help_text='diagnostic card number')
     price = models.DecimalField(max_digits=9, decimal_places=2)
-    sc = models.ForeignKey(ServiceCentre, on_delete=models.SET_NULL, null=True, blank=True)
+    warranty = models.BooleanField(default=False)
+
+    CASH = 'h'
+    CASHLESS = 's'
+    PAYMENT_METHOD = (
+        (CASH, 'Наличный'),
+        (CASHLESS, 'Безналичный')
+    )
+    payment_method = models.CharField(
+        max_length=1, choices=PAYMENT_METHOD, blank=True, default=CASHLESS)
+    
 
     def __str__(self):
         """ String for representing repairs in service centre"""
@@ -45,8 +56,7 @@ class Tickets(models.Model):
     ticket = models.CharField(max_length=6, db_index=True)
     court = models.ForeignKey(Court, on_delete=models.SET_NULL, null=True, blank=True)
     device = models.ForeignKey(Device, on_delete=models.SET_NULL, null=True, blank=True)
-    servicecentre = models.ForeignKey(
-        ServiceCentre, on_delete=models.SET_NULL, null=True, blank=True)
+    repair = models.ForeignKey(Repair, on_delete=models.SET_NULL, null=True, blank=True)
 
     NOT_DEFINED = 'n'
     IN_COURT = 'c'
@@ -96,8 +106,8 @@ class Tickets(models.Model):
     )
     location = models.CharField(
         max_length=1, choices=DEVICE_LOCATION, blank=True, default=COURT)
-    warranty = models.BooleanField(default=False)
     remark = models.CharField(max_length=100, help_text='Device malfunction describe')
+    died = models.BooleanField(default=False, help_text='Repair impossible')
 
     def __str__(self):
         """ String for representing ticket"""
