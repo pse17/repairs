@@ -94,6 +94,7 @@ class Tickets(models.Model):
     )
     location = models.CharField(
         max_length=1, choices=DEVICE_LOCATION, blank=True, default=COURT)
+    warranty = models.BooleanField(default=False)
     remark = models.CharField(max_length=100, help_text='Device malfunction describe')
 
     def __str__(self):
