@@ -1,0 +1,3 @@
+@media print {
+    div#header, div#sidebar, div#footer { display: none; }
+}
