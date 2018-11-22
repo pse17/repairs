@@ -45,6 +45,8 @@ class Tickets(models.Model):
     ticket = models.CharField(max_length=6, db_index=True)
     court = models.ForeignKey(Court, on_delete=models.SET_NULL, null=True, blank=True)
     device = models.ForeignKey(Device, on_delete=models.SET_NULL, null=True, blank=True)
+    servicecentre = models.ForeignKey(
+        ServiceCentre, on_delete=models.SET_NULL, null=True, blank=True)
 
     NOT_DEFINED = 'n'
     IN_COURT = 'c'
