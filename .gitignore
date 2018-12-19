@@ -1,4 +1,11 @@
 repairs/__pycache__/*
 reports/__pycache__/*
+reports/migrations/*
 reports/migrations/__pycache__/*
 reports/tests/__pycache__/*
+templates/servicentre_feel.py
+court_feel.py
+convertor_ticket.py
+device_fill.py
+servicentre_feel.py
+

@@ -20,12 +20,12 @@ class ServiceCentre(models.Model):
 
 class Repair(models.Model):
     '''Model representing repair in service centre in case difficult repair'''
-    
+
     sc = models.ForeignKey(ServiceCentre, on_delete=models.SET_NULL, null=True, blank=True)
-    ticket = models.CharField(max_length=8, help_text='Ticket in service centre')
-    diagnostic_card = models.CharField(max_length=8, help_text='diagnostic card number')
-    price = models.DecimalField(max_digits=9, decimal_places=2)
-    warranty = models.BooleanField(default=False)
+    ticket = models.CharField(max_length=8, null=True, help_text='Ticket in service centre')
+    diagnostic_card = models.CharField(max_length=8, null=True, help_text='diagnostic card number')
+    price = models.DecimalField(max_digits=9, null=True, decimal_places=2)
+    warranty = models.BooleanField(null=True, default=False)
 
     CASH = 'h'
     CASHLESS = 's'
@@ -35,7 +35,7 @@ class Repair(models.Model):
     )
     payment_method = models.CharField(
         max_length=1, choices=PAYMENT_METHOD, blank=True, default=CASHLESS)
-    
+
 
     def __str__(self):
         """ String for representing repairs in service centre"""
@@ -43,9 +43,11 @@ class Repair(models.Model):
 
 class Device(models.Model):
     '''Model representing device which we repair'''
-    name = models.CharField(max_length=30, null=True, blank=True)
-    invent_number = models.CharField(max_length=12, null=True, blank=True)
-    serial_number = models.CharField(max_length=12, null=True, blank=True)
+    name = models.CharField(max_length=80, null=True, blank=True)
+    invent_number = models.CharField(
+        max_length=18, null=True, blank=True, db_index=True)
+    serial_number = models.CharField(
+        max_length=24, null=True, blank=True, db_index=True)
 
     def __str__(self):
         """ String for representing device"""
@@ -106,7 +108,7 @@ class Tickets(models.Model):
     )
     location = models.CharField(
         max_length=1, choices=DEVICE_LOCATION, blank=True, default=COURT)
-    remark = models.CharField(max_length=100, help_text='Device malfunction describe')
+    remark = models.CharField(max_length=100, null=True, help_text='Device malfunction describe')
     died = models.BooleanField(default=False, help_text='Repair impossible')
 
     def __str__(self):

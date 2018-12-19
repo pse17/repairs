@@ -4,7 +4,10 @@
   {% block title %}<title></title>{% endblock %}
   
   {% load static %}
-  {% block stylesheet %} {% endblock %}
+  {% block stylesheet %} 
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  {% endblock %}
 </head>
 
 <body>
