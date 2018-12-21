@@ -55,7 +55,7 @@ ROOT_URLCONF = 'repairs.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['%s/templates/' % (BASE_DIR)],
+        'DIRS': ['%s\\templates\\' % (BASE_DIR)],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

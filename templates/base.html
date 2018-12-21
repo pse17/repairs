@@ -11,17 +11,24 @@
 </head>
 
 <body>
-  <div class="header">
-    {% block header %} {% endblock %}        
-  </div>
+  <header>
+    {% block header %} 
+      <div class='logo'>Ремонты</div>
+      <div class="navbar">menu</div>
+      <div class="tool">Login</div>
+    {% endblock %}
+  </header>
+ 
   <div class="sidebar">
-    {% block sidebar %} {% endblock %}      
+    {% block sidebar %}
+    {% endblock %}      
   </div>
+  
   <div class="content">
-    {% block content %} {% endblock %}  
+    {% block content %} 
+    {% endblock %}  
   </div>
-  <div class="footer">
-        {% block footer %} {% endblock %}  
-      </div>
+  
+  <footer>{% block footer %} {% endblock %}</footer>
 </body>
 </html>
