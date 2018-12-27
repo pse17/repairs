@@ -1,5 +1,6 @@
 ''' Describe application models'''
 from django.db import models
+from django.urls import reverse
 
 class Court(models.Model):
     '''Model representing court'''
@@ -111,6 +112,13 @@ class Tickets(models.Model):
     remark = models.CharField(max_length=100, null=True, help_text='Device malfunction describe')
     died = models.BooleanField(default=False, help_text='Repair impossible')
 
+    class Meta:
+        ordering = ["ticket"]
+
     def __str__(self):
         """ String for representing ticket"""
         return self.ticket
+
+    def get_absolute_url(self):
+        ''' Returns the url to access a particular ticket instance '''
+        return reverse('ticket_detail', args=[str(self.id)])

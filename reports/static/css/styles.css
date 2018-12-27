@@ -39,3 +39,6 @@ header {
     padding-left: 1%;
     color: darkgrey;
 }
+ul {
+    list-style: none;
+}

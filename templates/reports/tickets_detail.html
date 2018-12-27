@@ -1,0 +1,9 @@
+{% extends "reports/reports.html" %}
+
+{% block content %}
+  <h2> Заявка № {{tickets.ticket}}</h2>
+  <div>{{tickets.court.name}}</div>
+  <div>{{tickets.device.name}}</div> 
+  <div>Инвентарный номер Серийный номер</div>
+  <div>{{tickets.device.invent_number}} {{tickets.device.serial_number}}</div>
+{% endblock content %}
