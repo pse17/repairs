@@ -3,7 +3,9 @@
 {% block content %}
 <form action="" method="post">
     {% csrf_token %}
-    {{ formset }}
+    {{ticket_form}}
+    {{court_form}}
+    {{device_form}}
     <input type="submit" value="Submit">
 </form>
 {% endblock content %}

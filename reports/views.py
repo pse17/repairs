@@ -1,9 +1,10 @@
 ''' Describe views application reports'''
 from django.shortcuts import render
 from django.urls import reverse
+from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView
-from django.forms import inlineformset_factory
-from reports.models import Tickets, Device, Court
+from reports.models import Tickets
+from reports.forms import TicketsForm, DeviceForm, CourtForm
 
 def index(request):
     ''' Home view'''
@@ -17,15 +18,30 @@ class TicketsDetailView(DetailView):
     ''' Displays detailed ticket info'''
     model = Tickets
 
-def ticket_edit(request, pk):
+def ticket_edit_form(request, pk):
     ''' Edit a particular ticket instance '''
-    tickets_inline_form_set = inlineformset_factory(Device, Tickets, fields=('device_set.name', 'ticket'))
+
     ticket = Tickets.objects.get(pk=pk)
+    device = ticket.device
+    court = ticket.court
+
     if request.method == 'POST':
-        formset = tickets_inline_form_set(request.POST, instance=ticket)
-        if formset.is_valid():
-            formset.save()
-            return reverse('index')
+
+        ticket_form = TicketsForm(request.POST, instance=ticket)
+        device_form = DeviceForm(request.POST, instance=device)
+        court_form = CourtForm(request.POST, instance=court)
+
+        if ticket_form.is_valid() and device_form.is_valid():
+            dev = device_form.save()
+            tic = ticket_form.save(commit=False)
+            tic.device = dev
+            tic.save()
+            return HttpResponseRedirect(reverse('index'))
+
     else:
-        formset = tickets_inline_form_set(instance=ticket)
-    return render('ticket_edit.html', {'formset': formset,})
+        ticket_form = TicketsForm(instance=ticket)
+        device_form = DeviceForm(instance=device)
+        court_form = CourtForm(instance=court)
+
+    return render(request, 'reports/ticket_edit.html', context={
+        'ticket_form': ticket_form, 'device_form': device_form, 'court_form': court_form})

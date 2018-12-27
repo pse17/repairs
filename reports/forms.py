@@ -18,7 +18,7 @@ class DeviceForm(ModelForm):
     ''' Form to display the model Device '''
     class Meta:
         model = Device
-        fields =['name', 'invent_number', 'serial_number']
+        fields = ['name', 'invent_number', 'serial_number']
 
 class RepairForm(ModelForm):
     ''' Form to display the model Repair '''
