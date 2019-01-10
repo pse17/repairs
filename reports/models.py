@@ -111,6 +111,7 @@ class Tickets(models.Model):
         max_length=1, choices=DEVICE_LOCATION, blank=True, default=COURT)
     remark = models.CharField(max_length=100, null=True, help_text='Device malfunction describe')
     died = models.BooleanField(default=False, help_text='Repair impossible')
+    year = models.PositiveIntegerField(default=19)
 
     class Meta:
         ordering = ["ticket"]

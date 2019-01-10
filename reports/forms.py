@@ -3,6 +3,8 @@ Forms to display the models of application "reports"
 '''
 
 from django.forms import ModelForm
+from django.forms.widgets import DateInput, SelectDateWidget
+from django.contrib.admin.widgets import AdminDateWidget
 from reports.models import Tickets, Device, Repair, ServiceCentre, Court
 
 class TicketsForm(ModelForm):
@@ -13,6 +15,9 @@ class TicketsForm(ModelForm):
             'ticket', 'co7_state', 'co8_state', 'co41_state', 'co42_state',
             'co7_date', 'co8_date', 'kind', 'location', 'remark', 'died',
         ]
+        widgets = {
+            'co7_date': DateInput,
+        }
 
 class DeviceForm(ModelForm):
     ''' Form to display the model Device '''
