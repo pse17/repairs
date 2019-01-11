@@ -23,10 +23,10 @@ class Repair(models.Model):
     '''Model representing repair in service centre in case difficult repair'''
 
     sc = models.ForeignKey(ServiceCentre, on_delete=models.SET_NULL, null=True, blank=True)
-    ticket = models.CharField(max_length=8, null=True, help_text='Ticket in service centre')
-    diagnostic_card = models.CharField(max_length=8, null=True, help_text='diagnostic card number')
+    sc_ticket = models.CharField(max_length=8, null=True, help_text='Ticket in service centre')
+    diagnostic_card = models.CharField(max_length=8, null=True, help_text='Diagnostic card number')
     price = models.DecimalField(max_digits=9, null=True, decimal_places=2)
-    warranty = models.BooleanField(null=True, default=False)
+    warranty = models.BooleanField(default=False)
 
     CASH = 'h'
     CASHLESS = 's'

@@ -4,7 +4,7 @@
  
 <ul>
     {% for tic in tickets_list %}
-     <li> <a href="{% url 'ticket_edit' tic.pk %}">{{tic.ticket}}</a> {{tic.court.name}}  {{tic.device.name}} {{tic.device.invent_number}} {{tic.device.serial_number}} </li>
+     <li> <a href="{% url 'ticket_detail' tic.pk %}">{{tic.ticket}}</a> {{tic.court.name}}  {{tic.device.name}} {{tic.device.invent_number}} {{tic.device.serial_number}} </li>
     {% endfor %} 
  </ul>
    
