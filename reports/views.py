@@ -2,16 +2,13 @@
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, FormView
 from reports.models import Tickets, Repair
-from reports.forms import TicketsForm, DeviceForm, CourtForm, RepairForm
+from reports.forms import DeviceForm, CourtForm, RepairForm, TicketsStateCOForm, TicketsOtherForm
 
 def index(request):
     ''' Home view'''
     return render(request, 'reports/index.html', context={})
-
-def ticket_detail_view(request, pk):
-    ticket = Tickets.objects.get(pk=pk)
 
 class TicketsListView(ListView):
     ''' Displays ttickets list '''
@@ -21,8 +18,21 @@ class TicketsDetailView(DetailView):
     ''' Displays detailed ticket info'''
     model = Tickets
 
+class TicketsStateCOView(FormView):
+    ''' Edit some fields ) '''
+    template_name = 'tickets_CO.html'
+    form_class = TicketsStateCOForm
+    success_url = reverse('index')
+
+class TicketsOtherView(FormView):
+    ''' Edit some other fields ) '''
+    template_name = 'tickets_other.html'
+    form_class = TicketsOtherForm
+    success_url = reverse('index')
+
+'''
 def ticket_edit_form(request, pk):
-    ''' Edit a particular ticket instance '''
+    Edit a particular ticket instance
 
     ticket = Tickets.objects.get(pk=pk)
     device = ticket.device
@@ -56,3 +66,4 @@ def ticket_edit_form(request, pk):
         'device_form': device_form,
         'court_form': court_form,
         'repair_form': repair_form})
+'''

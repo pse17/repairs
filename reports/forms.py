@@ -3,22 +3,22 @@ Forms to display the models of application "reports"
 '''
 
 from django.forms import ModelForm
-from django.forms.widgets import DateInput, SelectDateWidget, TextInput
-from django.contrib.admin.widgets import AdminDateWidget
+from django.forms.widgets import TextInput
 from reports.models import Tickets, Device, Repair, ServiceCentre, Court
 
-class TicketsForm(ModelForm):
-    ''' Form to display the model Tickets '''
+class TicketsStateCOForm(ModelForm):
+    ''' Form to edit CO-7/CO-8 state'''
     class Meta:
         model = Tickets
-        fields = [
-            'ticket', 'co7_state', 'co8_state', 'co41_state', 'co42_state',
-            'co7_date', 'co8_date', 'kind', 'location', 'remark', 'died',
-        ]
-        widgets = {
-            'co7_date': DateInput,
-            'ticket': TextInput(attrs={'size': 6, 'disabled': True}),
-        }
+        fields = ['ticket', 'co7_state', 'co8_state', 'co41_state', 'co42_state', 'co7_date', 'co8_date']
+        widgets = {'ticket': TextInput(attrs={'disabled': True})}
+
+class TicketsOtherForm(ModelForm):
+    '''Form to edit other fiels in Tickets model'''
+    class Meta:
+        model = Tickets
+        fields = ['ticket', 'kind', 'location', 'remark', 'died']
+        widgets = {'ticket': TextInput(attrs={'disabled': True})}
 
 class DeviceForm(ModelForm):
     ''' Form to display the model Device '''

@@ -1,9 +1,48 @@
 {% extends "reports/reports.html" %}
 
 {% block content %}
-  <h2> Заявка № {{tickets.ticket}}</h2>
+
+<h4>Общие сведения</h4>
+  <div>Заявка по ИС ИАЦ № <span>{{tickets.ticket}}</span></div>
   <div>{{tickets.court.name}}</div>
   <div>{{tickets.device.name}}</div> 
-  <div>Инвентарный номер {{tickets.device.invent_number}} Серийный номер {{tickets.device.serial_number}}</div>
-  
+  <div>
+    Инвентарный № <span>{{tickets.device.invent_number}}</span> 
+    S/N <span>{{tickets.device.serial_number}}</span>
+  </div>
+  <p>
+  <div>Вид ремонта <span>{{ tickets.get_kind_display }}</span><a href="{% url 'ticket_edit_other' tickets.pk %}"> Редактировать</a></div>
+  <div>Местонахождение <span>{{ tickets.get_location_display}}</span><div>
+
+<h4>Ремонт в сервисном центре</h4>
+  <div>Заявка в сервисном центре № <span>{{ tickets.repair.sc_ticket }}</span><a href=""> Редактировать</a></div>
+  <div>Акт тех. диагностики № <span>{{ tickets.repair.diagnostic_card }}</span></div>
+  <div>Цена ремонта <span>{{ tickets.repair.price }}</span></div>
+  <div>
+    Гарантийный ремонт 
+    {% if tickets.repair.warranty is True %}
+      Да
+    {% else %}
+      Нет
+    {% endif %}
+  </div>
+  <h4>Акты ТС</h4>
+  <div>
+      CO-7 <span>{{ tickets.get_co7_state_display }}</span>
+      от {{ tickets.co7_date }}
+      <a href="{% url 'ticket_edit_co' tickets.pk %}">Редактировать</a>
+  </div>
+  <div>
+    CO-4.1 <span>{{ tickets.get_co41_state_display }}</span>
+    от {{ tickets.co7_date }}
+  </div>
+  <p>
+  <div>
+    CO-8 <span>{{ tickets.get_co8_state_display }}</span>
+    от {{ tickets.co8_date }}
+  </div>
+  <div>
+    CO-4.2 <span>{{ tickets.get_co42_state_display }}</span>
+    от {{ tickets.co8_date }}
+  </div>  
 {% endblock content %}
