@@ -1,0 +1,11 @@
+{% extends "sticker/sticker.html" %}
+
+{% block content %}
+ 
+<ul>
+    {% for stick in sticker_list %}
+     <li> <a href="{% url 'sticker_detail' tic.pk %}">{{tic.ticket}}</a> {{tic.court.name}}  {{tic.device.name}} {{tic.device.invent_number}} {{tic.device.serial_number}} </li>
+    {% endfor %} 
+ </ul>
+   
+{% endblock content %}

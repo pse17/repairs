@@ -22,3 +22,6 @@ urlpatterns = [
 urlpatterns += [
     path('reports/', include('reports.urls'))
 ]
+urlpatterns += [
+    path('sticker/', include('sticker.urls'))
+]
