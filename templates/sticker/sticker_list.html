@@ -4,7 +4,12 @@
  
 <ul>
     {% for stick in sticker_list %}
-     <li> <a href="{% url 'sticker_detail' tic.pk %}">{{tic.ticket}}</a> {{tic.court.name}}  {{tic.device.name}} {{tic.device.invent_number}} {{tic.device.serial_number}} </li>
+      <li> 
+        {{stick.court.name}}  
+        <a href="{% url 'sticker_detail' stick.pk %}">{{stick.device_name}}</a>
+        {{stick.invent_number}}
+        {{stick.serial_number}} 
+      </li>
     {% endfor %} 
  </ul>
    

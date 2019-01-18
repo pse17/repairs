@@ -12,6 +12,7 @@ class Sticker(models.Model):
     serial_number = models.CharField(max_length=24, blank=True)
     production_date = models.CharField(max_length=4, blank=True) # Year only
     malfunction = models.TextField(blank=True)
+    delivery_date = models.DateField(auto_now=True) # When delivered to repair
 
     def __str__(self):
         """ String for representing Stiker """
