@@ -1,12 +1,11 @@
 ''' Describe views application reports'''
 from django.shortcuts import render
-from django.urls import reverse
-from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, FormView
 from reports.models import Tickets, Repair
 from reports.forms import DeviceForm, CourtForm, RepairForm, TicketsStateCOForm, TicketsOtherForm
 
-def index(request):
+def home_view(request):
     ''' Home view'''
     return render(request, 'reports/index.html', context={})
 
@@ -22,13 +21,13 @@ class TicketsStateCOView(FormView):
     ''' Edit some fields ) '''
     template_name = 'tickets_CO.html'
     form_class = TicketsStateCOForm
-    success_url = reverse('index')
+    success_url = reverse_lazy('tickets_list')
 
 class TicketsOtherView(FormView):
     ''' Edit some other fields ) '''
     template_name = 'tickets_other.html'
     form_class = TicketsOtherForm
-    success_url = reverse('index')
+    success_url = reverse_lazy('tickets_list')
 
 '''
 def ticket_edit_form(request, pk):
