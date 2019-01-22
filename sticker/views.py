@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView
 from sticker.models import Sticker
 
 class StickerListView(ListView):

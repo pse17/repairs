@@ -5,10 +5,13 @@
 <ul>
     {% for stick in sticker_list %}
       <li> 
+        {{stick.delivery_date}}
         {{stick.court.name}}  
         <a href="{% url 'sticker_detail' stick.pk %}">{{stick.device_name}}</a>
         {{stick.invent_number}}
-        {{stick.serial_number}} 
+        {{stick.serial_number}}
+        {{stick.production_date}} 
+        {{stick.malfunction}}
       </li>
     {% endfor %} 
  </ul>

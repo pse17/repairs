@@ -14,6 +14,9 @@ class Sticker(models.Model):
     malfunction = models.TextField(blank=True)
     delivery_date = models.DateField(auto_now=True) # When delivered to repair
 
+    class Meta:
+        ordering = ["-delivery_date"]
+
     def __str__(self):
         """ String for representing Stiker """
         return '%s %s %s' % (self.device_name, self.invent_number, self.serial_number)
