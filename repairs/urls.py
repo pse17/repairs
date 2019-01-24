@@ -25,3 +25,6 @@ urlpatterns += [
 urlpatterns += [
     path('sticker/', include('sticker.urls'))
 ]
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]

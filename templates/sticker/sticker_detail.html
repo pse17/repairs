@@ -1,0 +1,31 @@
+{% extends "sticker/sticker.html" %}
+
+{% block content %}
+<div class="sticker">
+    <div>
+        Дата приема - {{object.delivery_date}} <br>
+        {{object.court.name}} <br>
+        Наименование ПТС - {{object.device_name}} <br>
+        Инвентарный № -{{object.invent_number}} <br>
+        Серийный № - {{object.serial_number}} <br>
+        Год выпуска - {{object.production_date}} <br>
+        Неисправность - {{object.malfunction}}
+    </div>
+    <p>---------------------------------------------------------------------------</p>
+    <div>
+            Дата приема - {{object.delivery_date}} <br>
+            {{object.court.name}} <br>
+            Наименование ПТС - {{object.device_name}} <br>
+            Инвентарный № -{{object.invent_number}} <br>
+            Серийный № - {{object.serial_number}} <br>
+            Год выпуска - {{object.production_date}} <br>
+            Неисправность - {{object.malfunction}}    
+    </div>
+    <div>
+            <p>
+            Принял в ремонт   _____________/______________/    дата ____________
+            <p>
+            Принял из ремонта _____________/______________/    дата ____________
+    </div>
+</div>
+    {% endblock content %}
