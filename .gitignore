@@ -8,7 +8,6 @@ court_feel.py
 convertor_ticket.py
 device_fill.py
 servicentre_feel.py
-
 sticker/__pycache__/*
 sticker/migrations/__pycache__/*
 sticker/tests/__pycache__/*

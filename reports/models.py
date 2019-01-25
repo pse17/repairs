@@ -115,6 +115,8 @@ class Tickets(models.Model):
 
     class Meta:
         ordering = ["ticket"]
+        permissions = (("can_edt_ticket", "Can edit ticket"),)
+
 
     def __str__(self):
         """ String for representing ticket"""
