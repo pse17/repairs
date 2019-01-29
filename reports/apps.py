@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class ReportsConfig(AppConfig):
     name = 'reports'
-    label = 'reps'
+    label = 'reports'
