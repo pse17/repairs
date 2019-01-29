@@ -1,6 +1,7 @@
 '''sticker app form'''
 from django.forms import ModelForm
 from sticker.models import Sticker
+from reports.models import Court
 
 class StickerForm(ModelForm):
     ''' Form to manipulate sticker model data'''
