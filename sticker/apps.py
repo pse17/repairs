@@ -5,4 +5,4 @@ from django.apps import AppConfig
 class StickerConfig(AppConfig):
     ''' Default app'''
     name = 'sticker'
-    label = 'sticker'
+    label = 'stic'
