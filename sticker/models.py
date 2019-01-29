@@ -1,6 +1,5 @@
 ''' Model for sticker app. I`m captain obvious'''
 from django.db import models
-from reports.models import Court
 
 class Sticker(models.Model):
     '''Model representing inscription on the sticker'''

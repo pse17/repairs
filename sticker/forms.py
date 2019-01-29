@@ -1,13 +1,11 @@
 '''sticker app form'''
 from django.forms import ModelForm
 from sticker.models import Sticker
-from reports.models import Court
 
 class StickerForm(ModelForm):
     ''' Form to manipulate sticker model data'''
     class Meta:
         model = Sticker
-        fields = ['court', 'device_name', 'invent_number',\
-            'serial_number', 'production_date', 'malfunction']
+        fields = '__all__'
         labels = {'invent_number': 'Инвентарный №', 'serial_number': 'Серийный № :',\
              'production_date': 'Год выпуска :', 'malfunction': 'Неисправность :'}
