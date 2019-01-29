@@ -8,10 +8,6 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-        ('reports', '0013_auto_20190111_1300'),
-    ]
-
     operations = [
         migrations.CreateModel(
             name='Sticker',
@@ -22,7 +18,6 @@ class Migration(migrations.Migration):
                 ('serial_number', models.CharField(blank=True, max_length=24)),
                 ('production_date', models.SmallIntegerField(null=True)),
                 ('malfunction', models.TextField(blank=True)),
-                ('court', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='courts', to='reports.Court')),
             ],
         ),
     ]

@@ -1,10 +1,19 @@
 ''' Model for sticker app. I`m captain obvious'''
 from django.db import models
 
+class Court(models.Model):
+    '''Model representing court'''
+    id = models.CharField(max_length=8, primary_key=True, db_index=True)
+    name = models.CharField(max_length=80, null=True, blank=True)
+
+    def __str__(self):
+        """ String for representing the Court"""
+        return self.name
+
 class Sticker(models.Model):
     '''Model representing inscription on the sticker'''
 
-    court = models.ForeignKey('reports.Court', related_name='courts', \
+    court = models.ForeignKey(Court, related_name='courts', \
         on_delete=models.SET_NULL, null=True)
     device_name = models.CharField(max_length=80, null=False)
     invent_number = models.CharField(max_length=18, null=False)
