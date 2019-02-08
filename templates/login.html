@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block addition_stylesheet %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/frm.css' %}">
+{% endblock %}
+
+{% block sidebar %}
+    <p></p>
+{% endblock %}  
+
+{% block content %}
+<div id="frmcont">
+    <div id="frmconthead"><p>Наберите ваше имя пользователя и пароль.</p></div>
+    <form id="login-form" method="post"
+        action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="frmlbl">Имя пользователя</div>
+        <div class="frmed"><input type="text" name="username" autofocus="" required="" id="id_username"></div>
+        <div class="frmlbl">Пароль</div>
+        <div class="frmed">{{form.password}}</div>
+
+        {% if form.errors %}
+        <p class="dange-text">Вы неверно ввели имя пользователя или пароль</p>
+        {% endif %}
+        
+        <div class="frmbtn"><input type="submit" value="Вход"></div>
+        <input type="hidden" name="next" value= "/reports/list/">
+    </form>
+</div>
+{% endblock content %}

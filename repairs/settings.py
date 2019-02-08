@@ -138,4 +138,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Redirect to home URL after login
 LOGIN_REDIRECT_URL = '/sticker/list/'
 
-LOGIN_URL = '/accounts/login/'
+LOGIN_URL = '/login/'

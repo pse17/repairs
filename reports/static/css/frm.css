@@ -1,0 +1,171 @@
+﻿
+#frmcont{
+    border-radius:6px;
+	border:2px solid #add8e6;
+	width:330px;
+	padding:20px;
+    margin-top:150px;
+    margin-left: 30%;
+	height:180px;
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+    bottom:0;
+    color: #000000;
+}
+#frmconthead{
+	width:100%;
+    text-align:center;
+    margin:0 auto;
+	margin-bottom:20px;
+	
+}
+.frmlbl{
+	width:140px;
+	float:left;
+    padding-top:10px;
+}
+.frmed{
+	width:140px;
+	float:left;
+    padding-top:10px;
+}
+.frmbtn{
+    padding-top:85px;
+	padding-left:109px;
+}
+
+.frmed input{
+width:100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.container-white, .white-box {
+    background: #ffffff;
+    color: #000000;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.4);
+}
+
+.white-box {
+    border-radius: 4px;
+}
+
+.padding-box {
+    padding: 30px;
+}
+
+.container-white, .white-box {
+    color: #000000;
+}
+
+html, button, input, select, textarea {
+    color: #1c1c1c;
+}
+
+input {
+    line-height: normal;
+}
+
+.content .content {
+    margin-left: -20px;
+    margin-right: -20px;
+}
+
+.form-control {
+    margin: 1em 0;
+        margin-right: 0px;
+        margin-left: 0px;
+}
+
+.content {
+    max-width: 1240px;
+}
+
+.content {
+    position: relative;
+    margin: 0 auto;
+}
+
+.form-label {
+    text-align: right;
+    line-height: 40px;
+    vertical-align: middle;
+    padding-bottom: 0;
+}
+.form-label {
+    padding-bottom: 8px;
+    display: inline-block;
+}
+.col {
+    float: left;
+}
+.col {
+    float: left;
+}
+.col-5 {
+    width: 41.66666667%;
+}
+.col {
+    float: left;
+}
+.col-mb-12 {
+    width: 100%;
+}
+.col {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.col {
+    position: relative;
+    min-height: 1px;
+    float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-control .input {
+    margin: 0;
+}
+.input {
+    display: inline-block;
+    height: 40px;
+    padding: 0 20px;
+    position: relative;
+    margin-bottom: 11px;
+    color: #1c1c1c;
+    vertical-align: middle;
+    border: solid 1px transparent;
+    outline: none;
+    background-color: #d8f4e6;
+    -webkit-appearance: none;
+    border-radius: 2px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+}
+html, button, input, select, textarea {
+    color: #1c1c1c;
+}
+input {
+    line-height: normal;
+}
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+        line-height: inherit;
+    margin: 0;
+}
