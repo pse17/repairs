@@ -11,3 +11,4 @@ servicentre_feel.py
 sticker/__pycache__/*
 sticker/migrations/__pycache__/*
 sticker/tests/__pycache__/*
+replicate.log

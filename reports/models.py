@@ -74,13 +74,13 @@ class Tickets(models.Model):
         (VERIFIED, 'Подписан'),
     )
     co7_state = models.CharField(
-        max_length=1, choices=REPORT_STATE, blank=True, default=NOT_DEFINED)
+        max_length=1, choices=REPORT_STATE, default=NOT_DEFINED)
     co8_state = models.CharField(
-        max_length=1, choices=REPORT_STATE, blank=True, default=NOT_DEFINED)
+        max_length=1, choices=REPORT_STATE, default=NOT_DEFINED)
     co41_state = models.CharField(
-        max_length=1, choices=REPORT_STATE, blank=True, default=NOT_DEFINED)
+        max_length=1, choices=REPORT_STATE, default=NOT_DEFINED)
     co42_state = models.CharField(
-        max_length=1, choices=REPORT_STATE, blank=True, default=NOT_DEFINED)
+        max_length=1, choices=REPORT_STATE, default=NOT_DEFINED)
 
     co7_date = models.DateField(null=True, blank=True)
     co8_date = models.DateField(null=True, blank=True)
@@ -97,7 +97,7 @@ class Tickets(models.Model):
         (NO_REPAIR, 'Ремонт не выполнен'),
     )
     kind = models.CharField(
-        max_length=1, choices=KIND_OF_REPAIR, blank=True, default=NOT_DEFINED)
+        max_length=1, choices=KIND_OF_REPAIR, default=NOT_DEFINED)
 
     COURT = 'c' # In court. Not yet repair or already fixed.
     IAC = 'i'   # In IAC. For diagnostic or already fixed.
@@ -108,14 +108,14 @@ class Tickets(models.Model):
         (SC, 'В сервисном центре'),
     )
     location = models.CharField(
-        max_length=1, choices=DEVICE_LOCATION, blank=True, default=COURT)
-    remark = models.CharField(max_length=100, null=True, help_text='Device malfunction describe')
-    died = models.BooleanField(default=False, help_text='Repair impossible')
-    year = models.PositiveIntegerField(default=19)
+        max_length=1, choices=DEVICE_LOCATION, default=COURT)
+    remark = models.CharField(max_length=100, null=True)
+    died = models.BooleanField(default=False)
+    year = models.PositiveIntegerField(default=2019)
 
     class Meta:
         ordering = ["ticket"]
-        permissions = (("can_edt_ticket", "Can edit ticket"),)
+        permissions = (("can_edit_ticket", "Can edit ticket"),)
 
 
     def __str__(self):

@@ -1,0 +1,22 @@
+{% extends "reports/reports.html" %}
+
+{% block content %}
+  <form method="post">{% csrf_token %}
+      {{ form.non_field_errors }}
+      <div>Заявка по ИС ИАЦ № <span>{{ticket.ticket}}</span></div>
+      <div>{{ticket.court.name}}</div>
+      <div>{{ticket.device.name}}</div> 
+      <div>
+      <div>
+        Инвентарный № <span>{{ticket.device.invent_number}}</span> 
+        S/N <span>{{ticket.device.serial_number}}</span>
+      </div>
+      <p>
+      <div>Номер заявки в СЦ - {{ form.sc_ticket }}</div>
+      <div>Номер акта ТС в СЦ - {{ form.diagnostic_card }}</div>
+      <div>Цена ремонта - {{ form.price }}</div>
+      <div>Вид оплаты - {{ form.payment_method }}</div>
+      <div>Гарантийный ремонт - {{ form.warranty }}</div>
+      <input type="submit" value="Сохранить">
+  </form>
+{% endblock content %}
