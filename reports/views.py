@@ -29,14 +29,14 @@ class TicketsDetailView(PermissionRequiredMixin, DetailView):
 class TicketsStateCOView(UpdateView):
     ''' Edit some fields ) '''
     model = Tickets
-    template_name = 'reports\\tickets_CO.html'
+    template_name = 'reports/tickets_CO.html'
     form_class = TicketsStateCOForm
     success_url = reverse_lazy('tickets_list')
 
 class TicketsOtherView(UpdateView):
     ''' Edit some other fields ) '''
     model = Tickets
-    template_name = 'reports\\tickets_other.html'
+    template_name = 'reports/tickets_other.html'
     form_class = TicketsOtherForm
     success_url = reverse_lazy('tickets_list')
 
@@ -44,7 +44,7 @@ class RepairUpdateView(UpdateView):
     ''' Edit repair details '''
     model = Repair
     form_class = RepairForm
-    template_name = 'reports\\repair_update.html'
+    template_name = 'reports/repair_update.html'
     success_url = reverse_lazy('tickets_list')
 
     def get_context_data(self, **kwargs):
@@ -56,7 +56,7 @@ class RepairCreateView(CreateView):
     ''' Create repair details '''
     model = Repair
     form_class = RepairForm
-    template_name = 'reports\\repair_update.html'
+    template_name = 'reports/repair_update.html'
     success_url = reverse_lazy('tickets_list')
 
     def get_context_data(self, **kwargs):
