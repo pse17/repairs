@@ -1,0 +1,11 @@
+{% extends "reports/reports.html" %}
+
+{% block content %}
+ 
+<ul>
+    {% for ticket in tickets_list %}
+     <li> <a href="{% url 'ticket_detail' ticket.pk %}">{{ticket.ticket}}</a> {{ticket.court.name}}  {{ticket.device.name}} {{ticket.device.invent_number}} {{ticket.device.serial_number}} {{ ticket.get_co7_state_display }}</li>
+    {% endfor %} 
+ </ul>
+   
+{% endblock content %}

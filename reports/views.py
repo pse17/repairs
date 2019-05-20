@@ -19,7 +19,7 @@ class TicketsListView(ListView):
 
     def get_queryset(self):
         qs = super().get_queryset()
-        return qs.filter(year=2019).order_by('-ticket')
+        return qs.filter(year=2019).extra(select={'int': 'CAST(ticket AS INTEGER)'}).order_by('-int')
 
 class TicketsDetailView(PermissionRequiredMixin, DetailView):
     ''' Displays detailed ticket info'''
@@ -70,3 +70,13 @@ class RepairCreateView(CreateView):
         ticket.repair = self.object
         ticket.save()
         return super().form_valid(form)
+
+class ReportCO7MssView(ListView):
+    model = Tickets
+    template_name = 'reports/miss-co7.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.exclude(co7_state='v')
+        queryset = queryset.extra(select={'int': 'CAST(ticket AS INTEGER)'}).order_by('int')
+        return queryset

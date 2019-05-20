@@ -110,13 +110,12 @@ class Tickets(models.Model):
     location = models.CharField(
         max_length=1, choices=DEVICE_LOCATION, default=COURT)
     remark = models.CharField(max_length=100, null=True)
-    died = models.BooleanField(default=False)
-    year = models.PositiveIntegerField(default=2019)
+    died = models.BooleanField(default=False, null=True)
+    year = models.PositiveIntegerField(default=2019, null=True)
 
     class Meta:
         ordering = ["ticket"]
         permissions = (("can_edit_ticket", "Can edit ticket"),)
-
 
     def __str__(self):
         """ String for representing ticket"""

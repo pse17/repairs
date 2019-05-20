@@ -40,7 +40,7 @@ def get_device_id(con, cursor, row):
             cursor.execute("""
                 INSERT INTO reports_device (invent_number, serial_number, name)
                     VALUES (%s,%s,%s) RETURNING id;
-                """, (row['invnumber'], row['sernumber'], row['stationname']))
+                """, (row['invnumber'], row['sernumber'], row['stationname'][:80]))
         except Exception as exp:
             logging.debug(exp)
         con.commit()
@@ -94,8 +94,8 @@ def main():
 		    JOIN TERMINALEQUIPMENT         ON sr.equipmentid   = TERMINALEQUIPMENT.id\
 		    JOIN INSTITUTION               ON sr.INSTITUTIONID = INSTITUTION.id\
 		    WHERE sr.REGYEAR = 2019 and\
-                 SERVICEREQUESTEQPMNTCHECK.problemdscrptn is not null and\
-                 sr.INVNUMBER is not null;"
+                SERVICEREQUESTEQPMNTCHECK.problemdscrptn is not null and\
+                sr.INVNUMBER is not null;"
     cursorfb.execute(select)
     rowmap = cursorfb.fetchallmap()
     con.commit()

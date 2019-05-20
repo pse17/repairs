@@ -1,7 +1,7 @@
 ''' Describe URLs for application reports'''
 from django.urls import path
 from reports.views import home_view, TicketsListView, TicketsDetailView
-from reports.views import TicketsStateCOView, TicketsOtherView, RepairUpdateView, RepairCreateView
+from reports.views import TicketsStateCOView, TicketsOtherView, RepairUpdateView, RepairCreateView, ReportCO7MssView
 
 
 urlpatterns = [
@@ -12,4 +12,5 @@ urlpatterns = [
     path('ticket/<int:pk>/other', TicketsOtherView.as_view(), name='ticket_edit_other'),
     path('repair/create/<int:pk>', RepairCreateView.as_view(), name='repair_create'),
     path('repair/<int:pk>', RepairUpdateView.as_view(), name='repair_update'),
+    path('miss-co7', ReportCO7MssView.as_view(), name='miss-co7'),
 ]
