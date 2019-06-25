@@ -71,7 +71,8 @@ class RepairCreateView(CreateView):
         ticket.save()
         return super().form_valid(form)
 
-class ReportCO7MssView(ListView):
+class CO7IsMissReport(ListView):
+    ''' Report "CO7 is missing" '''
     model = Tickets
     template_name = 'reports/miss-co7.html'
 
@@ -80,3 +81,15 @@ class ReportCO7MssView(ListView):
         queryset = queryset.exclude(co7_state='v')
         queryset = queryset.extra(select={'int': 'CAST(ticket AS INTEGER)'}).order_by('int')
         return queryset
+
+class TypeIsMissReport(ListView):
+    ''' Report "repair type is missing" '''
+    model = Tickets
+    template_name = 'reports/tickets_list.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(kind='n')
+        queryset = queryset.extra(select={'int': 'CAST(ticket AS INTEGER)'}).order_by('int')
+        return queryset
+
