@@ -124,6 +124,3 @@ def main():
     cursor.close()
     con.commit()
     con.close()
-
-if __name__ == "__main__":
-    main()

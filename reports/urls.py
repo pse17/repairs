@@ -14,4 +14,5 @@ urlpatterns = [
     path('repair/<int:pk>', RepairUpdateView.as_view(), name='repair_update'),
     path('co7miss', CO7IsMissReport.as_view(), name='co7miss'),
     path('typemiss', TypeIsMissReport.as_view(), name='typemiss'),
+    path('replicate', replicate_view, name='replicate'),
 ]

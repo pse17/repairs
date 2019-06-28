@@ -1,13 +1,14 @@
 ''' Describe views application reports'''
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from reports.forms import  TicketsStateCOForm, TicketsOtherForm, RepairForm, RepairFormSet
 from reports.models import Tickets, Repair
+import reports.replicate as repl
 
 def home_view(request):
     ''' Home view'''
@@ -93,3 +94,7 @@ class TypeIsMissReport(ListView):
         queryset = queryset.extra(select={'int': 'CAST(ticket AS INTEGER)'}).order_by('int')
         return queryset
 
+def replicate_view(request):
+    ''' Run replicate only'''
+    repl.main()
+    return render(request, 'reports/index.html', context={})
