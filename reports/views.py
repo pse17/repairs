@@ -14,6 +14,7 @@ def home_view(request):
     ''' Home view'''
     return render(request, 'reports/index.html', context={})
 
+
 class TicketsListView(ListView):
     ''' Displays ttickets list '''
     model = Tickets
@@ -22,10 +23,12 @@ class TicketsListView(ListView):
         qs = super().get_queryset()
         return qs.filter(year=2019).extra(select={'int': 'CAST(ticket AS INTEGER)'}).order_by('-int')
 
+
 class TicketsDetailView(PermissionRequiredMixin, DetailView):
     ''' Displays detailed ticket info'''
     model = Tickets
     permission_required = 'tickeets.can_edit_ticket'
+
 
 class TicketsStateCOView(UpdateView):
     ''' Edit some fields ) '''
@@ -34,12 +37,14 @@ class TicketsStateCOView(UpdateView):
     form_class = TicketsStateCOForm
     success_url = reverse_lazy('tickets_list')
 
+
 class TicketsOtherView(UpdateView):
     ''' Edit some other fields ) '''
     model = Tickets
     template_name = 'reports/tickets_other.html'
     form_class = TicketsOtherForm
     success_url = reverse_lazy('tickets_list')
+
 
 class RepairUpdateView(UpdateView):
     ''' Edit repair details '''
@@ -52,6 +57,7 @@ class RepairUpdateView(UpdateView):
         context = super().get_context_data(**kwargs)
         context['ticket'] = Tickets.objects.get(repair=self.kwargs['pk'])
         return context
+
 
 class RepairCreateView(CreateView):
     ''' Create repair details '''
@@ -72,6 +78,7 @@ class RepairCreateView(CreateView):
         ticket.save()
         return super().form_valid(form)
 
+
 class CO7IsMissReport(ListView):
     ''' Report "CO7 is missing" '''
     model = Tickets
@@ -83,6 +90,7 @@ class CO7IsMissReport(ListView):
         queryset = queryset.extra(select={'int': 'CAST(ticket AS INTEGER)'}).order_by('int')
         return queryset
 
+
 class TypeIsMissReport(ListView):
     ''' Report "repair type is missing" '''
     model = Tickets
@@ -93,6 +101,7 @@ class TypeIsMissReport(ListView):
         queryset = queryset.filter(kind='n')
         queryset = queryset.extra(select={'int': 'CAST(ticket AS INTEGER)'}).order_by('int')
         return queryset
+
 
 def replicate_view(request):
     ''' Run replicate only'''
