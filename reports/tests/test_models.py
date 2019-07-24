@@ -1,6 +1,6 @@
 '''Testing models'''
 from django.test import TestCase
-from reports.models import Court, ServiceCentre, Repair, Device, Tickets
+from reports.models import Court, ServiceCentre, Repair, Device, Ticket
 
 class TestCourt(TestCase):
     ''' Test Court model'''
@@ -96,24 +96,24 @@ class TestDevice(TestCase):
             device.name, device.invent_number, device.serial_number)
         self.assertEqual(expected_object_name, str(device))
 
-class TestTickets(TestCase):
-    ''' Test Tickets model'''
+class TestTicket(TestCase):
+    ''' Test Ticket model'''
 
     @classmethod
     def setUpTestData(cls):
-        Tickets.objects.create(ticket='000001', remark='It is test ticket')
+        Ticket.objects.create(ticket='000001', remark='It is test ticket')
 
     def test_tiket_max_length(self):
-        tickets = Tickets.objects.get(id=1)
-        max_length = tickets._meta.get_field('ticket').max_length
+        Ticket = Ticket.objects.get(id=1)
+        max_length = Ticket._meta.get_field('ticket').max_length
         self.assertEqual(max_length, 6)
 
     def test_remark_max_length(self):
-        tickets = Tickets.objects.get(id=1)
-        max_length = tickets._meta.get_field('remark').max_length
+        Ticket = Ticket.objects.get(id=1)
+        max_length = Ticket._meta.get_field('remark').max_length
         self.assertEqual(max_length, 100)
 
     def test_object_name(self):
-        tickets = Tickets.objects.get(id=1)
-        expected_object_name = tickets.ticket
-        self.assertEqual(expected_object_name, str(tickets))
+        Ticket = Ticket.objects.get(id=1)
+        expected_object_name = Ticket.ticket
+        self.assertEqual(expected_object_name, str(Ticket))

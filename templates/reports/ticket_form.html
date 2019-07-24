@@ -1,0 +1,18 @@
+{% extends "reports/reports.html" %}
+
+{% block content %}
+  <form method="post">{% csrf_token %}
+    <div>
+      <div>Номер заявки: {{ ticket_id }}</div>
+      <div>Объект: {{ court_name }}</div>
+      <div> ПТС: {{ name }} инв № {{ invent_number }} s/№ {{ serial_number }} </div>
+      <div>Неиправность: {{ remark }}</div>
+      <div> Акт СО-7 от {{ co7_date }} статус {{ form.co7_state }} </div> 
+      <div> Акт СО-8 от {{ co8_date }} статус {{ form.co8_state }} </div>
+      <div>Вид ремонта: {{ form.kind }}</div>
+      <div>Местонахождение ПТС: {{ form.location }}</div>
+      <div>Списание {{ form.died }}</div>
+    </div>
+    <input type="submit" value="Сохранить">
+  </form>
+{% endblock content %}

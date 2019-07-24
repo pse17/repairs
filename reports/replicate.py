@@ -16,7 +16,7 @@ def get_ticket_id(con, cursor, ticket_num):
     ''' Return ticket ID if found'''
     try:
         cursor.execute("""
-            SELECT id FROM reports_tickets WHERE ticket = '%s' AND year=%s;
+            SELECT id FROM reports_Ticket WHERE ticket = '%s' AND year=%s;
             """, (ticket_num, YEAR_NOW))
     except Exception as exp:
         logging.debug(exp)
@@ -50,9 +50,9 @@ def get_device_id(con, cursor, row):
     return device_id
 
 def insert_ticket(con, cursor, row, device_id):
-    ''' Add new row to Tickets'''
+    ''' Add new row to Ticket'''
     select = """
-            INSERT INTO reports_tickets 
+            INSERT INTO reports_Ticket 
                 (ticket, remark, court_id, device_id, year, co7_date,died)
               VALUES (%s,%s,%s,%s,%s,%s,%s) RETURNING id;
             """
@@ -69,7 +69,7 @@ def update_ticket(con, cursor, ticket_close_date, ticket_id):
     ''' Set ticket close date if not null'''
     try:
         cursor.execute("""
-            UPDATE reports_tickets SET co8_date = %s WHERE id = %s 
+            UPDATE reports_Ticket SET co8_date = %s WHERE id = %s 
             """, (ticket_close_date, ticket_id))
     except Exception as exp:
         logging.debug(exp)

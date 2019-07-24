@@ -5,20 +5,20 @@ Forms to display the models of application "reports"
 from django.forms import ModelForm
 from django.forms.models import inlineformset_factory
 from django.forms.widgets import TextInput
-from reports.models import Tickets, Device, Repair, ServiceCentre, Court
+from reports.models import Ticket, Device, Repair, ServiceCentre, Court
 
-class TicketsStateCOForm(ModelForm):
+class TicketStateCOForm(ModelForm):
     ''' Form to edit CO-7/CO-8 state'''
     class Meta:
-        model = Tickets
+        model = Ticket
         fields = ['ticket', 'co7_state', 'co8_state', 'co41_state', 'co42_state', 'co7_date', 'co8_date']
 
 
 
-class TicketsOtherForm(ModelForm):
-    '''Form to edit other fiels in Tickets model'''
+class TicketOtherForm(ModelForm):
+    '''Form to edit other fiels in Ticket model'''
     class Meta:
-        model = Tickets
+        model = Ticket
         fields = ['ticket', 'kind', 'location', 'remark', 'died']
 
 class DeviceForm(ModelForm):
@@ -38,7 +38,7 @@ class RepairForm(ModelForm):
         model = Repair
         fields = ['sc_ticket', 'diagnostic_card', 'price', 'payment_method', 'warranty']
 
-RepairFormSet = inlineformset_factory(Repair, Tickets, fields=('ticket',))
+RepairFormSet = inlineformset_factory(Repair, Ticket, fields=('ticket',))
 
 class ServiceCentreForm(ModelForm):
     ''' Form to display the model ServiceCentre '''

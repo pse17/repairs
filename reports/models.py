@@ -2,6 +2,7 @@
 from django.db import models
 from django.urls import reverse
 
+
 class Court(models.Model):
     '''Model representing court'''
     id = models.CharField(max_length=8, primary_key=True, db_index=True)
@@ -11,6 +12,7 @@ class Court(models.Model):
         """ String for representing the Court"""
         return self.name
 
+
 class ServiceCentre(models.Model):
     '''Model representing service centre'''
     name = models.CharField(max_length=80, null=True, blank=True)
@@ -19,13 +21,13 @@ class ServiceCentre(models.Model):
         """ String for representing the service centre"""
         return self.name
 
+
 class Repair(models.Model):
     '''Model representing repair in service centre in case difficult repair'''
-
-    sc = models.ForeignKey(ServiceCentre, on_delete=models.SET_NULL, null=True, blank=True)
-    sc_ticket = models.CharField(max_length=8, null=True, help_text='Ticket in service centre')
-    diagnostic_card = models.CharField(max_length=8, null=True, help_text='Diagnostic card number')
-    price = models.DecimalField(max_digits=9, null=True, decimal_places=2)
+    servicecentre = models.ForeignKey(ServiceCentre, on_delete=models.SET_NULL, null=True)
+    sc_ticket = models.CharField(max_length=8, null=True, blank=True)
+    diagnostic_card = models.CharField(max_length=8, null=True, blank=True)
+    price = models.DecimalField(max_digits=9, decimal_places=2, null=True, blank=True)
     warranty = models.BooleanField(default=False)
 
     CASH = 'h'
@@ -37,10 +39,10 @@ class Repair(models.Model):
     payment_method = models.CharField(
         max_length=1, choices=PAYMENT_METHOD, blank=True, default=CASHLESS)
 
-
     def __str__(self):
         """ String for representing repairs in service centre"""
         return '%s %s' % (self.diagnostic_card, self.price)
+
 
 class Device(models.Model):
     '''Model representing device which we repair'''
@@ -54,12 +56,13 @@ class Device(models.Model):
         """ String for representing device"""
         return '%s %s %s' % (self.name, self.invent_number, self.serial_number)
 
-class Tickets(models.Model):
+
+class Ticket(models.Model):
     '''Model representing ticket in IAC'''
     ticket = models.CharField(max_length=6, db_index=True)
-    court = models.ForeignKey(Court, on_delete=models.SET_NULL, null=True, blank=True)
-    device = models.ForeignKey(Device, on_delete=models.SET_NULL, null=True, blank=True)
-    repair = models.ForeignKey(Repair, on_delete=models.SET_NULL, null=True, blank=True)
+    court = models.ForeignKey(Court, on_delete=models.SET_NULL, null=True)
+    device = models.ForeignKey(Device, on_delete=models.SET_NULL, null=True)
+    repair = models.ForeignKey(Repair, on_delete=models.SET_NULL, null=True)
 
     NOT_DEFINED = 'n'
     IN_COURT = 'c'
@@ -109,9 +112,15 @@ class Tickets(models.Model):
     )
     location = models.CharField(
         max_length=1, choices=DEVICE_LOCATION, default=COURT)
-    remark = models.CharField(max_length=100, null=True)
-    died = models.BooleanField(default=False, null=True)
-    year = models.PositiveIntegerField(default=2019, null=True)
+    remark = models.TextField(null=True, blank=True)
+    died = models.BooleanField(default=False)
+    year = models.PositiveIntegerField(null=True)
+    
+    name = models.CharField(max_length=80, null=True, blank=True)
+    invent_number = models.CharField(
+        max_length=18, null=True, blank=True, db_index=True)
+    serial_number = models.CharField(
+        max_length=24, null=True, blank=True, db_index=True)
 
     class Meta:
         ordering = ["ticket"]

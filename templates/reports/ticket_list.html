@@ -1,0 +1,16 @@
+{% extends "reports/reports.html" %}
+
+{% block content %}
+ 
+<ul>
+    {% for ticket in ticket_list %}
+     <li> <a href="{% url 'ticket-update' ticket.pk %}">{{ticket.ticket}}</a> 
+        {{ticket.court.name}}  
+        {{ticket.name}} 
+        {{ticket.invent_number}} 
+        {{ticket.serial_number}} 
+    </li>
+    {% endfor %} 
+ </ul>
+   
+{% endblock content %}
