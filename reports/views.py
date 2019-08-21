@@ -9,7 +9,8 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from reports.forms import  RepairForm, RepairFormSet
 from reports.models import Ticket, Repair
-import reports.repl4 as repl
+import reports.replicate as replicate
+
 
 def home_view(request):
     ''' Home view'''
@@ -116,5 +117,5 @@ class TypeIsMissReport(ListView):
 
 def replicate_view(request):
     ''' Run replicate only'''
-    repl.main()
+    replicate.main()
     return render(request, 'reports/index.html', context={})
