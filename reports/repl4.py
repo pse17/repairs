@@ -59,7 +59,7 @@ def main():
         print(exp)
 
     try:
-        fbcon = fdb.connect(dsn='192.168.10.10:cia', user='SYSDBA', password='m')
+        fbcon = fdb.connect(dsn='192.168.10.10:cia', user='SYSDBA', password='m', charset='WIN1251')
         fbcursor = fbcon.cursor()
     except Exception as exp:
         print(exp)
