@@ -1,5 +1,6 @@
 ''' Describe views application reports'''
 from time import strftime
+from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
@@ -111,6 +112,19 @@ class TypeIsMissReport(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         queryset = queryset.filter(kind='n')
+        queryset = queryset.extra(select={'int': 'CAST(ticket AS INTEGER)'}).order_by('int')
+        return queryset
+
+
+class RepairKitReport(ListView):
+    ''' Repair kit report by the current month '''
+    model = Ticket
+    template_name = 'reports/ticket_list.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(kind='k')
+        queryset = queryset.filter(co8_date__month=datetime.now().month)
         queryset = queryset.extra(select={'int': 'CAST(ticket AS INTEGER)'}).order_by('int')
         return queryset
 
