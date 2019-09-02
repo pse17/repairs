@@ -16,4 +16,4 @@ RUN pip install -r requirements.txt
 EXPOSE 8000
 
 # Run app.py when the container launches
-CMD python manage.py runserver 0.0.0.0:8000
+CMD uwsgi --http :8000 --module repairs.wsgi

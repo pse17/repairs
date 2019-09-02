@@ -13,5 +13,6 @@ urlpatterns = [
     path('co7miss', CO7IsMissReport.as_view(), name='co7miss'),
     path('co8miss', CO8IsMissReport.as_view(), name='co8miss'),
     path('typemiss', TypeIsMissReport.as_view(), name='typemiss'),
+    path('repairkit', RepairKitReport.as_view(), name='repairkit'),
     path('replicate', replicate_view, name='replicate'),
 ]
