@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'reports.apps.ReportsConfig',
-    'sticker.apps.StickerConfig'
+    'sticker.apps.StickerConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
