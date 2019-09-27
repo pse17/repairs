@@ -121,6 +121,7 @@ class Ticket(models.Model):
         max_length=18, null=True, blank=True, db_index=True)
     serial_number = models.CharField(
         max_length=24, null=True, blank=True, db_index=True)
+    
 
     class Meta:
         ordering = ["ticket"]

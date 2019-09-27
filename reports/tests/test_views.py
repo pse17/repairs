@@ -40,7 +40,6 @@ class TicketUpdateView(TestCase):
         #court = Court(id='000001', name='Объект')
         #device = Device(name='Принтер', invent_number='0001', serial_number='00002')
         Ticket.objects.create(ticket='100', co7_state='v')
-        return super().setUpTestData()
 
     def test_view_url_exsts(self):
         response = self.client.get('ticket/update/1')

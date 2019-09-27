@@ -1,6 +1,7 @@
 ''' Describe URLs for application reports'''
 from django.urls import path
 from reports.views import *
+from reports import api
 
 
 
@@ -15,4 +16,9 @@ urlpatterns = [
     path('typemiss', TypeIsMissReport.as_view(), name='typemiss'),
     path('repairkit', RepairKitReport.as_view(), name='repairkit'),
     path('replicate', replicate_view, name='replicate'),
+]
+
+urlpatterns += [
+    path('api/ticket/', api.TicketListAPI.as_view(), name='list_ticket'),
+    path('api/ticket/<int:pk>', api.TicketAPI.as_view(), name='detail_update_ticket')
 ]
