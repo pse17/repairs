@@ -3,7 +3,11 @@ FROM python:3.7.2-stretch
 # Set the working directory to /app
 WORKDIR /app
 
-RUN apt-get install -y libfbclient2 nginx supervisor
+RUN apt-get update -yqq && \
+    apt-get install -y \
+        libfbclient2 \
+        nginx \
+        supervisor
 
 COPY nginx_app.conf /etc/nginx/sites-available/default
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
