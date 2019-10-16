@@ -9,6 +9,7 @@ services:
   
   nginx:
     build:
+      context: .
       dockerfile: Dockerfile-nginx
     ports:
       - 80:8080
