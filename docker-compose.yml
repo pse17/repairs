@@ -8,10 +8,9 @@ services:
 
   
   nginx:
-    build: ./nginx
+    build:
+      dockerfile: Dockerfile-nginx
     ports:
-      - 8081:8080
-    volumes:
-      - ./static:/usr/share/nginx/html
+      - 80:8080
     depends_on:
       - web
