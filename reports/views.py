@@ -23,8 +23,9 @@ class TicketListView(ListView):
     model = Ticket
 
     def get_queryset(self):
-        qs = super().get_queryset()
-        return qs.filter(year=2019).extra(select={'int': 'CAST(ticket AS INTEGER)'}).order_by('-int')
+        queryset = Ticket.simple_list_objects.all()
+        return queryset
+
 
 class TicketUpdateView(UpdateView):
     model = Ticket
@@ -88,9 +89,8 @@ class CO7IsMissReport(ListView):
     template_name = 'reports/ticket_list.html'
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = queryset = Ticket.simple_list_objects.all()
         queryset = queryset.exclude(co7_state='v')
-        queryset = queryset.extra(select={'int': 'CAST(ticket AS INTEGER)'}).order_by('int')
         return queryset
 
 class CO8IsMissReport(ListView):
@@ -99,9 +99,9 @@ class CO8IsMissReport(ListView):
     template_name = 'reports/ticket_list.html'
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = queryset = Ticket.simple_list_objects.all()
+        queryset = queryset.filter(died=False)
         queryset = queryset.exclude(co8_state='v')
-        queryset = queryset.extra(select={'int': 'CAST(ticket AS INTEGER)'}).order_by('int')
         return queryset
 
 class TypeIsMissReport(ListView):
@@ -110,9 +110,8 @@ class TypeIsMissReport(ListView):
     template_name = 'reports/ticket_list.html'
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = queryset = Ticket.simple_list_objects.all()
         queryset = queryset.filter(kind='n')
-        queryset = queryset.extra(select={'int': 'CAST(ticket AS INTEGER)'}).order_by('int')
         return queryset
 
 
@@ -122,10 +121,9 @@ class RepairKitReport(ListView):
     template_name = 'reports/ticket_list.html'
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = queryset = Ticket.simple_list_objects.all()
         queryset = queryset.filter(kind='k')
         queryset = queryset.filter(co8_date__month=datetime.now().month)
-        queryset = queryset.extra(select={'int': 'CAST(ticket AS INTEGER)'}).order_by('int')
         return queryset
 
 
