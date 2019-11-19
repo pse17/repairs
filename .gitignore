@@ -12,3 +12,6 @@ sticker/__pycache__/*
 sticker/migrations/__pycache__/*
 sticker/tests/__pycache__/*
 replicate.log
+static/debug_toolbar/*
+repairs/settings-debug.py
+repairs/settings-prod.py

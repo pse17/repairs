@@ -23,10 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'b3r48r9cfild8#7!w!t^ert9$upb%3@_kobs4&edu^(ffwt59_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '192.168.10.15']
-
 
 # Application definition
 
@@ -53,8 +52,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'repairs.urls'
-
-
 
 TEMPLATES = [
     {
@@ -140,3 +137,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 LOGIN_REDIRECT_URL = '/sticker/list/'
 
 LOGIN_URL = '/login/'
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]

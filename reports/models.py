@@ -56,6 +56,15 @@ class Device(models.Model):
         """ String for representing device"""
         return '%s %s %s' % (self.name, self.invent_number, self.serial_number)
 
+class SimpleTicketsListManager(models.Manager):
+    def get_queryset(self):
+        queryset = super(SimpleTicketsListManager, self).get_queryset()
+        queryset = queryset.prefetch_related('court')
+        queryset = queryset.only('ticket', 'court__name', 'name', 'invent_number', 'serial_number')
+        queryset = queryset.filter(year=2019)
+        queryset = queryset.extra(select={'int': 'CAST(ticket AS INTEGER)'}).order_by('int')
+        return queryset
+
 
 class Ticket(models.Model):
     '''Model representing ticket in IAC'''
@@ -121,6 +130,10 @@ class Ticket(models.Model):
         max_length=18, null=True, blank=True, db_index=True)
     serial_number = models.CharField(
         max_length=24, null=True, blank=True, db_index=True)
+    
+    # define special model manager
+    objects = models.Manager()
+    simple_list_objects = SimpleTicketsListManager()
     
 
     class Meta:
