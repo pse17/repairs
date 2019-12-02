@@ -64,7 +64,7 @@ class TestTicket(TestCase):
 
     def test_name_max_length(self):
         max_length = self.ticket._meta.get_field('name').max_length
-        self.assertEqual(max_length, 80)
+        self.assertEqual(max_length, 120)
 
     def test_invent_number_max_length(self):
         max_length = self.ticket._meta.get_field('invent_number').max_length

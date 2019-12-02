@@ -7,28 +7,28 @@ class MissCO7ListViewTest(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        #court = Court(id='000001', name='Объект')
-        #device = Device(name='Принтер', invent_number='0001', serial_number='00002')
-        #for num in range(4):
-        #    Ticket.objects.creaate(ticket='%s' % num, device=device, court=court, co7_state='n')
-        Ticket.objects.creaate(ticket='100', co7_state='v')
+        Court.objects.create(id='000001', name='Объект')
+        court = Court.objects.get(id='000001')
+        for num in range(4):
+            Ticket.objects.create(ticket='%s' % num, court=court, co7_state='n', name='Принтер', invent_number='0001', serial_number='00002')
+        #Ticket.objects.create(ticket='100', co7_state='v')
         return super().setUpTestData()
 
     def test_view_url_exists_at_desired_location(self):
-        resp = self.client.get('/reports/miss-co7/')
+        resp = self.client.get('/reports/co7miss/')
         self.assertEqual(resp.status_code, 200)
 
     def test_view_url_accessible_by_name(self):
-        resp = self.client.get(reverse('miss-co7'))
+        resp = self.client.get(reverse('co7miss'))
         self.assertEqual(resp.status_code, 200)
 
     def test_view_uses_correct_template(self):
-        resp = self.client.get(reverse('miss-co7'))
+        resp = self.client.get(reverse('co7miss'))
         self.assertEqual(resp.status_code, 200)
-        self.assertTemplateUsed(resp, 'reports/miss-co7.html')
+        self.assertTemplateUsed(resp, 'reports/ticket_list.html')
 
     def test_lists_unverified_co7(self):
-        resp = self.client.get(reverse('miss-co7'))
+        resp = self.client.get(reverse('co7miss'))
         self.assertEqual(resp.status_code, 200)
         self.assertTrue(len(resp.context['Ticket_list']) == 4)
 

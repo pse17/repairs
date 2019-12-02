@@ -62,7 +62,7 @@ class SimpleTicketsListManager(models.Manager):
         queryset = queryset.prefetch_related('court')
         queryset = queryset.only('ticket', 'court__name', 'name', 'invent_number', 'serial_number')
         queryset = queryset.filter(year=2019)
-        queryset = queryset.extra(select={'int': 'CAST(ticket AS INTEGER)'}).order_by('int')
+        queryset = queryset.extra(select={'int': 'CAST(ticket AS INTEGER)'}).order_by('-int')
         return queryset
 
 
@@ -125,7 +125,7 @@ class Ticket(models.Model):
     died = models.BooleanField(default=False)
     year = models.PositiveIntegerField(null=True)
     
-    name = models.CharField(max_length=80, null=True, blank=True)
+    name = models.CharField(max_length=120, null=True, blank=True)
     invent_number = models.CharField(
         max_length=18, null=True, blank=True, db_index=True)
     serial_number = models.CharField(
