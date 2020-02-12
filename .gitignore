@@ -15,3 +15,5 @@ replicate.log
 static/debug_toolbar/*
 repairs/settings-debug.py
 repairs/settings-prod.py
+sticker/migrations/*
+*.log
