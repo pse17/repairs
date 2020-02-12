@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'reports.apps.ReportsConfig',
     'sticker.apps.StickerConfig',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -49,7 +50,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  
 ]
+
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = ['http://localhost:8080','http://localhost']
 
 ROOT_URLCONF = 'repairs.urls'
 
@@ -141,3 +148,59 @@ LOGIN_URL = '/login/'
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'request': {
+            'format': '{levelname} {asctime} {message} {request} {status_code}',
+            'style': '{',
+        },
+        'sql': {
+            'format': '{levelname} {asctime} {message} {sql} {params}',
+            'style': '{',
+        },
+    },    
+    'handlers': {
+        'django': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'django.log'),
+            'formatter': 'verbose',
+        },
+        'requests': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'requests.log'),
+            'formatter': 'request',
+        },
+        'sql': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'sql.log'),
+            'formatter': 'sql',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['django'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['requests'],
+            'level': 'WARNING',
+            'propagate': True,
+        },        
+        'django.db.backends': {
+            'handlers': ['sql'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },        
+    },
+}

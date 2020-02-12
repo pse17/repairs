@@ -11,7 +11,7 @@ class TicketAPI(APIView):
     def get_object(self, pk):
         try:
             return Ticket.objects.get(pk=pk)
-        except Ticket.DoesNotExist:
+        except Exception:
             raise Http404
     
     def get(self, request, pk, format=None):

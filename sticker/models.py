@@ -24,7 +24,6 @@ class Sticker(models.Model):
 
     class Meta:
         ordering = ["-delivery_date"]
-        permissions = (("can_make_sticker", "Can make sticker"),)
 
     def __str__(self):
         """ String for representing Stiker """
