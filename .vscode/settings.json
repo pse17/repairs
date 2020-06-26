@@ -1,5 +1,5 @@
 {
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
-    "python.pythonPath": "C:\\Users\\fomini\\.virtualenvs\\repairs\\Scripts\\python.exe"
+    "python.pythonPath": "c:\\venv\\repairs\\Scripts\\python.exe"
 }

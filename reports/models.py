@@ -61,7 +61,7 @@ class SimpleTicketsListManager(models.Manager):
         queryset = super(SimpleTicketsListManager, self).get_queryset()
         queryset = queryset.prefetch_related('court')
         queryset = queryset.only('ticket', 'court__name', 'name', 'invent_number', 'serial_number')
-        queryset = queryset.filter(year=2019)
+        queryset = queryset.filter(year=2020)
         queryset = queryset.extra(select={'int': 'CAST(ticket AS INTEGER)'}).order_by('-int')
         return queryset
 

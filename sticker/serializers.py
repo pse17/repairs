@@ -9,10 +9,11 @@ class CourtSerializer(serializers.ModelSerializer):
 
 
 class StickerSerializer(serializers.ModelSerializer):
-    court = serializers.PrimaryKeyRelatedField(read_only=True)
+    court = CourtSerializer(read_only=True)
+    #court = serializers.PrimaryKeyRelatedField(read_only=True)
     class Meta:
         model = Sticker
-        fields = ['court', 'device_name','invent_number','serial_number', 'production_date', 'malfunction', 'delivery_date']
+        fields = ['id','court', 'device_name','invent_number','serial_number', 'production_date', 'malfunction', 'delivery_date']
         depth = 1
 
 

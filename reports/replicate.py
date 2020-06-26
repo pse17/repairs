@@ -1,13 +1,13 @@
 import fdb
 import psycopg2
-YEAR_NOW = 2019
+YEAR_NOW = 2020
 
 def get_tickets_for_update(fbcon, fbcursor):
     ''' Return list of tuples [(REGNUM, EXECUTEDT),] '''
     select = "SELECT  sr.REGNUM, sr.EXECUTEDT\
 		    FROM servicerequest AS sr\
 		    JOIN SERVICEREQUESTEQPMNTCHECK ON sr.id = SERVICEREQUESTEQPMNTCHECK.requestid\
-		    WHERE sr.REGYEAR = 2019 and\
+		    WHERE sr.REGYEAR = 2020 and\
                 sr.EXECUTEDT is not null and\
                 SERVICEREQUESTEQPMNTCHECK.problemdscrptn is not null and\
                 sr.INVNUMBER is not null;"
@@ -40,10 +40,10 @@ def get_new_tickets(fbcon, fbcursor):
 		            sr.REZULTID, sr.EXECUTEDT, SERVICEREQUESTEQPMNTCHECK.problemdscrptn,\
 		            TERMINALEQUIPMENT.stationname, INSTITUTION.vn_code, sr.REGDATE\
 		    FROM servicerequest AS sr\
-		    JOIN SERVICEREQUESTEQPMNTCHECK ON sr.id = SERVICEREQUESTEQPMNTCHECK.requestid\
-		    JOIN TERMINALEQUIPMENT         ON sr.equipmentid   = TERMINALEQUIPMENT.id\
-		    JOIN INSTITUTION               ON sr.INSTITUTIONID = INSTITUTION.id\
-		    WHERE sr.REGYEAR = 2019 and\
+            INNER JOIN INSTITUTION              ON sr.INSTITUTIONID = INSTITUTION.id\
+		    LEFT JOIN SERVICEREQUESTEQPMNTCHECK ON sr.id = SERVICEREQUESTEQPMNTCHECK.requestid\
+		    LEFT JOIN TERMINALEQUIPMENT         ON sr.equipmentid   = TERMINALEQUIPMENT.id\
+		    WHERE sr.REGYEAR = 2020 and\
                 SERVICEREQUESTEQPMNTCHECK.problemdscrptn is not null and\
                 sr.INVNUMBER is not null and\
                 sr.REGNUM NOT IN (SELECT REGNUM FROM TEMP_TICKETS);"
