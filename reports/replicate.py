@@ -18,7 +18,7 @@ def get_tickets_for_update(fbcon, fbcursor):
     return result
 
 def get_tickets(pgcon, pgcursor):
-    select = "SELECT ticket FROM reports_ticket"
+    select = "SELECT ticket FROM reports_ticket WHERE YEAR = 2020"
     pgcursor.execute(select)
     tickets = pgcursor.fetchall()
     pgcon.commit()
